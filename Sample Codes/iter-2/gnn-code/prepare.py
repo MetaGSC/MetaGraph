@@ -7,6 +7,8 @@ from pysam import FastaFile
 
 from predict import predict
 
+_DEBUG = False
+
 def get_label_sequences(fastafile):
   start = 'NODE_'
   end = '_length_'
@@ -102,6 +104,8 @@ def generate_edge_tensor(gfafilepath, segment_contigs):
 
   with open(gfafilepath) as file:
     line = file.readline()
+    if _DEBUG:
+      line_count = 1
     while line != "":
       # Identify lines with link information
       if "L" in line:
@@ -109,21 +113,32 @@ def generate_edge_tensor(gfafilepath, segment_contigs):
           seg1, seg2 = strings[1], strings[3]
           weight = strings[5].strip()
           if seg1 not in segment_contigs or seg2 not in segment_contigs:
+            line = file.readline()
+            if _DEBUG:
+              line_count += 1
             continue
           contig1 = segment_contigs[seg1]
           contig2 = segment_contigs[seg2]
+          if _DEBUG:
+            print(line_count, contig1, contig2)
           for cont1 in contig1:
             for cont2 in contig2:
-              source_list.append(cont1)
-              destination_list.append(cont2)
-              if weight.isnumeric():
-                weight_list.append([int(weight)])
-              elif weight[:-1].isnumeric():
-                weight_list.append([int(weight[:-1])])
-              else:
-                weight_list.append(None)
-                isNeedToAdjustWeights = True
+              if cont1 != cont2:
+                source_list.append(cont1)
+                destination_list.append(cont2)
+                if weight.isnumeric():
+                  weight_list.append([int(weight)])
+                elif weight[:-1].isnumeric():
+                  weight_list.append([int(weight[:-1])])
+                else:
+                  weight_list.append(None)
+                  isNeedToAdjustWeights = True
       line = file.readline()
+      if _DEBUG:
+        line_count += 1
+        # print(line_count)
+    if _DEBUG:
+      print("Finished the reading part of GFA File")
     if isNeedToAdjustWeights:
       weight_list = adjust_weights(weight_list)
     return source_list, destination_list, weight_list
@@ -158,8 +173,16 @@ def generate_tensors(features, source_list, destination_list, weight_list, node_
   return data, train_tensor, test_tensor
 
 def generate_data(gfafilepath, contigfilepath, fastafilepath):
+  if _DEBUG:
+    print("Starting to execute get_label_sequences methos")
   features = get_label_sequences(fastafilepath)
+  if _DEBUG:
+    print("Starting to execute get_the_segment_contig_map methos")
   segment_contigs, paths, node_count = get_the_segment_contig_map(contigfilepath)
+  if _DEBUG:
+    print("Starting to execute generate_edge_tensor methos")
   source_list, destination_list, weight_list = generate_edge_tensor(gfafilepath, segment_contigs)
+  if _DEBUG:
+    print("Starting to execute generate_tensors methos")
   data, train_data, test_data = generate_tensors(features, source_list, destination_list, weight_list, node_count)
   return data, train_data, test_data
