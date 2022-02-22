@@ -1,0 +1,175 @@
+GCN WITHOUT LENGTHS
+
+Filename:-  /home/hp/FYP/GNN2/gnn-code/plasclassresults/10c25p.fasta.probs.out
+Train Data tensor(159) 636
+Test Data tensor(87) 636
+Test Accuracy:-  111.0 Out of 135.0  Accuracy:-  0.8222222222222222 tensor(75) 
+precision:-  0.92 recall:-  0.7931034482758621 f1:-  0.851851851851852 
+ [[42  6]
+ [18 69]] 
+
+[[54 15]
+ [34 83]] 
+precision 0.8469387755102041 recall 0.7094017094017094 f1 0.7720930232558141 
+=======================
+
+Filename:-  /home/hp/FYP/GNN2/gnn-code/plasclassresults/14c38p.fasta.probs.out
+Train Data tensor(408) 1881
+Test Data tensor(194) 1881
+Test Accuracy:-  270.0 Out of 313.0  Accuracy:-  0.8626198083067093 tensor(193) 
+precision:-  0.8911917098445595 recall:-  0.8865979381443299 f1:-  0.8888888888888887 
+ [[ 98  21]
+ [ 22 172]] 
+
+[[254  47]
+ [ 54 484]] 
+precision 0.911487758945386 recall 0.8996282527881041 f1 0.9055191768007483 
+=======================
+
+Filename:-  /home/hp/FYP/GNN2/gnn-code/plasclassresults/2c5p.fasta.probs.out
+Train Data tensor(49) 128
+Test Data tensor(28) 128
+Test Accuracy:-  28.0 Out of 32.0  Accuracy:-  0.875 tensor(32) 
+precision:-  0.875 recall:-  1.0 f1:-  0.9333333333333333 
+ [[ 0  4]
+ [ 0 28]] 
+
+[[ 1  5]
+ [ 0 19]] 
+precision 0.7916666666666666 recall 1.0 f1 0.8837209302325582 
+=======================
+
+Filename:-  /home/hp/FYP/GNN2/gnn-code/plasclassresults/10c25p_low_copy.fasta.probs.out
+Train Data tensor(163) 486
+Test Data tensor(75) 486
+Test Accuracy:-  100.0 Out of 115.0  Accuracy:-  0.8695652173913043 tensor(82) 
+precision:-  0.8658536585365854 recall:-  0.9466666666666667 f1:-  0.9044585987261147 
+ [[29 11]
+ [ 4 71]] 
+
+[[13 16]
+ [13 66]] 
+precision 0.8048780487804879 recall 0.8354430379746836 f1 0.8198757763975155 
+=======================
+
+Filename:-  /home/hp/FYP/GNN2/gnn-code/plasclassresults/2c9p.fasta.probs.out
+Train Data tensor(49) 187
+Test Data tensor(31) 187
+Test Accuracy:-  33.0 Out of 40.0  Accuracy:-  0.825 tensor(26) 
+precision:-  0.9615384615384616 recall:-  0.8064516129032258 f1:-  0.8771929824561403 
+ [[ 8  1]
+ [ 6 25]] 
+
+[[10  8]
+ [ 8 30]] 
+precision 0.7894736842105263 recall 0.7894736842105263 f1 0.7894736842105263 
+=======================
+
+Filename:-  /home/hp/FYP/GNN2/gnn-code/plasclassresults/wastewater-plasmidome.fasta.probs.out
+Filename:-  /home/hp/FYP/GNN2/gnn-code/plasclassresults/2c5p_low_copy.fasta.probs.out
+Train Data tensor(39) 119
+Test Data tensor(20) 119
+Test Accuracy:-  24.0 Out of 29.0  Accuracy:-  0.8275862068965517 tensor(25) 
+precision:-  0.8 recall:-  1.0 f1:-  0.888888888888889 
+ [[ 4  5]
+ [ 0 20]] 
+
+[[ 5  1]
+ [ 4 14]] 
+precision 0.9333333333333333 recall 0.7777777777777778 f1 0.8484848484848485 
+=======================
+
+
+
+
+
+
+
+
+
+
+
+WITH LENGTH
+
+
+
+Filename:-  /home/hp/FYP/GNN2/gnn-code/plasclassresults/10c25p.fasta.probs.out
+Train Data tensor(166) 636
+Test Data tensor(82) 636
+Test Accuracy:-  83.0 Out of 135.0  Accuracy:-  0.6148148148148148 tensor(56) 
+precision:-  0.7678571428571429 recall:-  0.524390243902439 f1:-  0.6231884057971016 
+ [[40 13]
+ [39 43]] 
+
+[[34 35]
+ [39 78]] 
+precision 0.6902654867256637 recall 0.6666666666666666 f1 0.6782608695652173 
+=======================
+
+Filename:-  /home/hp/FYP/GNN2/gnn-code/plasclassresults/14c38p.fasta.probs.out
+Train Data tensor(408) 1881
+Test Data tensor(204) 1881
+Test Accuracy:-  215.0 Out of 313.0  Accuracy:-  0.6869009584664537 tensor(266) 
+precision:-  0.6992481203007519 recall:-  0.9117647058823529 f1:-  0.7914893617021277 
+ [[ 29  80]
+ [ 18 186]] 
+
+[[ 12 289]
+ [ 24 514]] 
+precision 0.6400996264009963 recall 0.9553903345724907 f1 0.7665920954511558 
+=======================
+
+Filename:-  /home/hp/FYP/GNN2/gnn-code/plasclassresults/2c5p.fasta.probs.out
+Train Data tensor(48) 128
+Test Data tensor(25) 128
+Test Accuracy:-  27.0 Out of 32.0  Accuracy:-  0.84375 tensor(24) 
+precision:-  0.9166666666666666 recall:-  0.88 f1:-  0.8979591836734694 
+ [[ 5  2]
+ [ 3 22]] 
+
+[[ 2  4]
+ [ 4 15]] 
+precision 0.7894736842105263 recall 0.7894736842105263 f1 0.7894736842105263 
+=======================
+
+Filename:-  /home/hp/FYP/GNN2/gnn-code/plasclassresults/10c25p_low_copy.fasta.probs.out
+Train Data tensor(154) 486
+Test Data tensor(80) 486
+Test Accuracy:-  80.0 Out of 115.0  Accuracy:-  0.6956521739130435 tensor(115) 
+precision:-  0.6956521739130435 recall:-  1.0 f1:-  0.8205128205128205 
+ [[ 0 35]
+ [ 0 80]] 
+
+[[ 0 29]
+ [ 0 79]] 
+precision 0.7314814814814815 recall 1.0 f1 0.8449197860962567 
+=======================
+
+Filename:-  /home/hp/FYP/GNN2/gnn-code/plasclassresults/2c9p.fasta.probs.out
+Train Data tensor(56) 187
+Test Data tensor(24) 187
+Test Accuracy:-  22.0 Out of 40.0  Accuracy:-  0.55 tensor(6) 
+precision:-  1.0 recall:-  0.25 f1:-  0.4 
+ [[16  0]
+ [18  6]] 
+
+[[12  6]
+ [25 13]] 
+precision 0.6842105263157895 recall 0.34210526315789475 f1 0.45614035087719296 
+=======================
+
+Filename:-  /home/hp/FYP/GNN2/gnn-code/plasclassresults/wastewater-plasmidome.fasta.probs.out
+Filename:-  /home/hp/FYP/GNN2/gnn-code/plasclassresults/2c5p_low_copy.fasta.probs.out
+Train Data tensor(39) 119
+Test Data tensor(22) 119
+Test Accuracy:-  22.0 Out of 29.0  Accuracy:-  0.7586206896551724 tensor(25) 
+precision:-  0.8 recall:-  0.9090909090909091 f1:-  0.8510638297872342 
+ [[ 2  5]
+ [ 2 20]] 
+
+[[ 2  4]
+ [ 4 14]] 
+precision 0.7777777777777778 recall 0.7777777777777778 f1 0.7777777777777778 
+=======================
+
+
