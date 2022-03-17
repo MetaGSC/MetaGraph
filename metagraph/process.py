@@ -7,17 +7,14 @@ from torch_geometric.utils import to_networkx
 import pandas as pd
 
 from prepare import get_the_segment_contig_map, generate_edge_tensor
-from visualization import visualize_graph, visualize_embedding, visualize
-from gnn_model import GCN, get_parameters, get_model, iterate, get_train_validate_test_data
-from preprocess import preprocess, getGroundTruth, updatePreds, getPrecisionRecall
+from gnn_model import GCN, get_parameters, get_model, iterate
+from preprocess import preprocess, getGroundTruth, updatePreds, getOutputResults
 
 from constants import class_column, node_id_column,prediction_result_column, train_set_column, find_set_column, final_prdiction_probability, binary_prediction_column
 
-from sklearn.metrics import accuracy_score, confusion_matrix, roc_curve, roc_auc_score
-
 _DEBUG = False
 
-def process(userfolder, initpredictions, kmerfilepath, gfaprefix, pathfilesuffix, fastafilesuffix, fileseparator, isKmerAvailable, csv_column_names, feature_column_names, pred_column_name, result_df):
+def process(userfolder, initpredictions, kmerfilepath, gfaprefix, pathfilesuffix, fastafilesuffix, fileseparator, isKmerAvailable, csv_column_names, feature_column_names, pred_column_name, result_df = None):
   data = None
   all_csv_column_names = feature_column_names[:]
 
@@ -97,14 +94,10 @@ def process(userfolder, initpredictions, kmerfilepath, gfaprefix, pathfilesuffix
   out, h = model(data.x, data.edge_index)
 
   pred = out.argmax(dim=1)
-
-  if not(isKmerAvailable):
-    result_df = getPrecisionRecall(ground_df[node_id_column], ground_df[class_column], find_set, binary_predictions_set, True, userfolder, result_df, isKmerAvailable)
   
   valid_pred = updatePreds(pred, binary_predictions_set, find_set)
 
-  result_df = getPrecisionRecall(ground_df[node_id_column], ground_df[class_column], find_set, valid_pred, False, userfolder, result_df, isKmerAvailable)
+  output_df = feature_df
+  output_df["class"] = getOutputResults(valid_pred)
 
-  if _DEBUG:
-    return data, train_set, test_data
-  return out.detach().numpy(), feature_df.index.values[find_set]
+  output_df.to_csv("output.csv")

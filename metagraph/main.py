@@ -19,8 +19,8 @@ def main():
     initial_predictions_feature_column_names = feature_column_names
     initial_predictions_pred_column_name = pred_column_name
 
-    result_df = pd.DataFrame(columns = ["Name", "iskmer", "precision", "recall", "F1"])
+    result_df = pd.DataFrame(columns = ["Name", "Plasmid_Probability", "Prediction"])
 
-    process(userfolder, initpredictions, kmerfilepath, gfaprefix, pathfilesuffix, fastafilesuffix, fileseparator, isKmerAvailable, initial_predictions_csv_column_names, initial_predictions_feature_column_names, initial_predictions_pred_column_name, result_df)
+    process(userfolder, initpredictions, kmerfilepath, gfaprefix, pathfilesuffix, fastafilesuffix, fileseparator, isKmerAvailable, initial_predictions_csv_column_names, initial_predictions_feature_column_names, initial_predictions_pred_column_name)
 
 main()

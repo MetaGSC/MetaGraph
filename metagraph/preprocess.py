@@ -109,3 +109,13 @@ def generateTruthResults(nodeids, classes, find_set, pred_set):
                 pred_array.append(pred_set[index])
                 class_array.append(classes[index])
     return pred_array, class_array
+
+def getOutputResults(valid_pred):
+    output_results = []
+    for pred in valid_pred:
+        if (pred == 1):
+            output_results.append(CHROMOSOME)
+        elif (pred == 0):
+            output_results.append(PLASMID)
+        else:
+            print("ERROR Occured in output results", pred)
