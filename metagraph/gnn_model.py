@@ -17,7 +17,7 @@ dropout_prob = 0.0
 
 class GCN1(MessagePassing):
     def __init__(self, inputfeatures = 2, hidden_channels = 2, num_classes = 2):
-        super().__init__(aggr='max') #  "Max" aggregation.
+        super().__init__(aggr='max') 
         self.mlp = Seq(Linear(2 * inputfeatures, hidden_channels),
                        ReLU(),
                        Linear(hidden_channels, hidden_channels),
@@ -25,32 +25,18 @@ class GCN1(MessagePassing):
                        Linear(hidden_channels, num_classes))
 
     def forward(self, x, edge_index):
-        # x has shape [N, in_channels]
-        # edge_index has shape [2, E]
-
         return self.propagate(edge_index, x=x), None
 
     def message(self, x_i, x_j):
-        # x_i has shape [E, in_channels]
-        # x_j has shape [E, in_channels]
-
-        tmp = torch.cat([x_i, x_j - x_i], dim=1)  # tmp has shape [E, 2 * in_channels]
+        tmp = torch.cat([x_i, x_j - x_i], dim=1)  
         return self.mlp(tmp)
 
 class GCN(torch.nn.Module):
     def __init__(self, inputfeatures = 2, hidden_channels = [68, 20, 10], num_classes = 2):
         super().__init__()
         torch.manual_seed(1234567)
-        # self.conv1 = GCNConv(inputfeatures, hidden_channels[0])
-        # self.conv2 = GCNConv(hidden_channels[0], hidden_channels[1])
-        # self.conv3 = GCNConv(hidden_channels[1], hidden_channels[2])
-        # self.conv4 = GCNConv(hidden_channels[2], num_classes)
-        # self.classifier = Linear(num_classes, num_classes)
-
         self.conv1 = GCNConv(inputfeatures, hidden_channels[0])
         self.conv2 = GCNConv(hidden_channels[0], num_classes)
-        # self.conv3 = GCNConv(hidden_channels[1], hidden_channels[2])
-        # self.conv4 = GCNConv(hidden_channels[2], num_classes)
         self.classifier = Linear(num_classes, num_classes)
 
     def forward(self, x, edge_index):
@@ -58,27 +44,17 @@ class GCN(torch.nn.Module):
         x = x.relu()
         x = F.dropout(x, p = dropout_prob, training=self.training)
         
-        x = self.conv2(x, edge_index)
-        # x = x.relu()
-        # x = F.dropout(x, p = dropout_prob, training=self.training)
-        
-        # x = self.conv3(x, edge_index)
-        # x = x.relu()
-        # x = F.dropout(x, p = dropout_prob, training=self.training)
-        
-        # x = self.conv4(x, edge_index)
-
-        # Apply a final (linear) classifier.
+        x = self.conv2(x, edge_index)   
         out = self.classifier(x)
         return out, x
 
 def train(model, optimizer, criterion, data, train_data):
       model.train()
-      optimizer.zero_grad()  # Clear gradients.
-      out, h = model(data.x, data.edge_index)  # Perform a single forward pass.
-      loss = criterion(out[train_data], data.y[train_data])  # Compute the loss solely based on the training nodes.
-      loss.backward()  # Derive gradients.
-      optimizer.step()  # Update parameters based on gradients.
+      optimizer.zero_grad()  
+      out, h = model(data.x, data.edge_index)  
+      loss = criterion(out[train_data], data.y[train_data])  
+      loss.backward()  
+      optimizer.step()  
       return loss, h
 
 def iterate(model, optimizer, criterion, data, train_data):
@@ -106,9 +82,6 @@ def get_train_validate_test_data(train, validate, index_list):
     train_num = int(train * true_count)
     validate_num = int(validate * true_count) 
     test_num = true_count - train_num - validate_num
-    
-    # random.shuffle(true_list)
-    
     true_iterate_index = -1
 
     for i in range(train_num):

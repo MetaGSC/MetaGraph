@@ -30,7 +30,6 @@ def get_label_sequences(fastafile):
     attributes["class"] = 0.5
     attributes["train_sem"] = False
 
-    # TODO Change this
     color_value = sum(predicted_values) / len(predicted_values)
 
     if color_value < 0.4:
@@ -68,7 +67,6 @@ def get_the_segment_contig_map(contigfilepath):
             paths[contig_num] = [segments[0], segments[-1]]
         
         for segment in segments:
-            # TODO Check this
             if segment.endswith("+") or segment.endswith("-"):
                 segment = segment[:-1]
             if segment not in segment_contigs:
@@ -97,8 +95,6 @@ def adjust_weights(weight_list):
     weight_list[i] = [average_weight]
 
   return weight_list
-
-#make segment_contigs global
 def generate_edge_tensor(gfafilepath, segment_contigs):
   source_list = []
   destination_list= []
@@ -110,7 +106,6 @@ def generate_edge_tensor(gfafilepath, segment_contigs):
     if _DEBUG:
       line_count = 1
     while line != "":
-      # Identify lines with link information
       if "L" in line:
           strings = line.split("\t")
           seg1, seg2 = strings[1], strings[3]
@@ -142,7 +137,6 @@ def generate_edge_tensor(gfafilepath, segment_contigs):
       line = file.readline()
       if _DEBUG:
         line_count += 1
-        # print(line_count)
     if _DEBUG:
       print("Finished the reading part of GFA File")
     if isNeedToAdjustWeights:
